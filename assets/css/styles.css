@@ -149,6 +149,34 @@ main { padding: 40px 0 80px; }
   box-shadow: var(--shadow);
 }
 
+/* --- Action Buttons (NEW) --- */
+.cta-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center; /* Center on mobile */
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--faint);
+  color: var(--text);
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background: var(--accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
 /* --- Typography --- */
 h1 { font-size: 2.5rem; margin: 0 0 16px 0; font-weight: 800; letter-spacing: -0.03em; }
 h2 { font-size: 1.5rem; margin: 0 0 16px 0; font-weight: 700; }
@@ -213,4 +241,5 @@ footer { padding: 60px 0; border-top: 1px solid var(--faint); text-align: center
   .headshot { width: 240px; height: 240px; }
   .grid { grid-template-columns: repeat(3, 1fr); }
   .footerrow { flex-direction: row; justify-content: space-between; }
+  .cta-group { justify-content: flex-start; } /* Align left on desktop */
 }
