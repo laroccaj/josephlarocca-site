@@ -1,46 +1,100 @@
-<style>
-  .cta-container {
-    margin-top: 30px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  .btn-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f4f4f4; /* Light neutral grey */
-    color: #333;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid #ddd;
-  }
-  .btn-link:hover {
-    background-color: #000; /* Subtle hover effect */
-    color: #fff;
-    border-color: #000;
-    transform: translateY(-2px);
-  }
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joseph LaRocca | Retail Asset Protection & Crime Prevention</title>
+  
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="canonical" href="https://josephlarocca.com/" />
 
-<div class="intro-section">
-  <h1>Joseph LaRocca</h1>
-  <p class="tagline">
-    Retail nerd; Crime Prevention Advocate; TV/Film blur; Hockey fan; Kidney donor.
-  </p>
+  <meta name="description" content="Joseph LaRocca is a retail asset protection expert, crime prevention advocate, and media consultant." />
+  
+  <meta property="og:title" content="Joseph LaRocca | Official Website" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://josephlarocca.com/" />
 
-  <p>
-    A nationally recognized leader in loss prevention, organized retail crime (ORC), and public-private sector partnerships. Formerly with The Walt Disney Company and the National Retail Federation.
-  </p>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
 
-  <p>
-    Today, Joseph serves as a strategic advisor and industry spokesperson, bridging the gap between global retailers and law enforcement. A frequent contributor to major news outlets like CNN and Fox News, he leverages decades of experience to advocate for smarter security technologies and resilient business strategies. Whether in the boardroom or at a national summit, his mission remains centered on fostering collaboration to protect people and assets alike.
-  </p>
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="brand-logo" aria-hidden="true">Joseph LaRocca</div>
 
-  <div class="cta-container">
-    <a href="/bio" class="btn-link">Read Full Bio</a>
-    <a href="/media-links" class="btn-link">Media Links</a>
-    <a href="/photo-gallery" class="btn-link">Photo Gallery</a>
-  </div>
-</div>
+        <nav class="navlinks" aria-label="Primary">
+          <a href="/" aria-current="page">Home</a>
+          <a href="/bio/">Bio</a>
+          <a href="/gallery/">Photo Gallery</a>
+          <a href="/media/">Media Links</a>
+          <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="card">
+        <div class="hero">
+          <img src="assets/img/joseph.jpg" alt="Joseph LaRocca" class="headshot">
+          
+          <div class="hero-content">
+            <div class="kicker">Expertise & Advocacy</div>
+            <h1>Joseph LaRocca</h1>
+            <p class="lead">Retail nerd; Crime Prevention Advocate; TV/Film blur; Hockey fan; Kidney donor.</p>
+            
+            <p>A nationally recognized leader in loss prevention, organized retail crime (ORC), and public-private sector partnerships. Formerly with The Walt Disney Company and the National Retail Federation.</p>
+
+            <p>Beyond corporate leadership, Joseph serves as a strategic advisor and industry spokesperson, frequently appearing on news outlets like CNN, FOX News, and NBC. He leverages decades of experience to advocate for smarter security technologies and resilient business strategies, helping organizations navigate the evolving landscape of retail safety.</p>
+
+            <hr class="sep" />
+
+            <div class="cta-group">
+              <a href="/bio/" class="btn-action">Read Full Bio</a>
+              <a href="/media/" class="btn-action">Media Links</a>
+              <a href="/gallery/" class="btn-action">Photos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footerrow">
+        <div>© 2026 Joseph LaRocca</div>
+        <nav aria-label="Social Links">
+          <a href="https://x.com/laroccaj" target="_blank" rel="noopener">X</a>
+          &nbsp;·&nbsp;
+          <a href="https://www.linkedin.com/in/laroccaj" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+    
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    rootElement.setAttribute('data-theme', initialTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = rootElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      rootElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>
