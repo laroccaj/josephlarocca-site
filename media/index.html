@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Media & Legislative Contributions | Joseph LaRocca</title>
+  
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="canonical" href="https://josephlarocca.com/media/" />
 
@@ -11,7 +12,6 @@
   <meta property="og:title" content="Media & Press | Joseph LaRocca" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://josephlarocca.com/media/" />
-  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
@@ -21,11 +21,16 @@
     <div class="container">
       <div class="nav">
         <div class="brand-logo" aria-hidden="true">Joseph LaRocca</div>
+
         <nav class="navlinks" aria-label="Primary">
           <a href="/">Home</a>
           <a href="/bio/">Bio</a>
           <a href="/gallery/">Photo Gallery</a>
           <a href="/media/" aria-current="page">Media Links</a>
+          <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+          </button>
         </nav>
       </div>
     </div>
@@ -167,7 +172,7 @@
     <div class="container">
       <div class="footerrow">
         <div>© 2026 Joseph LaRocca</div>
-        <nav aria-label="Social">
+        <nav aria-label="Social Links">
           <a href="https://x.com/laroccaj" target="_blank" rel="noopener">X</a>
           &nbsp;·&nbsp;
           <a href="https://www.linkedin.com/in/laroccaj" target="_blank" rel="noopener">LinkedIn</a>
@@ -175,5 +180,25 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+    
+    // Core Model: Gemini 3 Flash
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    rootElement.setAttribute('data-theme', initialTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = rootElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      rootElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
 </body>
 </html>
