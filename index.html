@@ -3,60 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Joseph LaRocca | Retail Asset Protection & Operations Expert</title>
-
-  <meta name="description" content="Joseph LaRocca: 30+ years of expertise in retail asset protection, loss prevention, and organized retail crime. Founder of RetaiLPartners and industry speaker." />
-  <link rel="canonical" href="https://josephlarocca.com/" />
+  <title>Joseph LaRocca | Retail Asset Protection & Crime Prevention</title>
   
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="canonical" href="https://josephlarocca.com/" />
 
-  <meta property="og:title" content="Joseph LaRocca | Retail Asset Protection Expert" />
-  <meta property="og:description" content="Innovative retail security professional and Founder of RetaiLPartners. Expert in loss prevention and organized retail crime." />
+  <meta name="description" content="Joseph LaRocca is a retail asset protection expert, crime prevention advocate, and media consultant." />
+  
+  <meta property="og:title" content="Joseph LaRocca | Official Website" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://josephlarocca.com/" />
-  <meta property="og:image" content="https://josephlarocca.com/assets/img/joseph.jpg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@laroccaj" />
-  <meta name="twitter:title" content="Joseph LaRocca | Retail Asset Protection Expert" />
-  <meta name="twitter:description" content="Expert in retail security, loss prevention, and organized retail crime." />
-  <meta name="twitter:image" content="https://josephlarocca.com/assets/img/joseph.jpg" />
 
   <link rel="stylesheet" href="/assets/css/styles.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://josephlarocca.com/#person",
-    "name": "Joseph LaRocca",
-    "url": "https://josephlarocca.com/",
-    "jobTitle": "Retail Asset Protection and Operations Professional",
-    "image": "https://josephlarocca.com/assets/img/joseph.jpg",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "RetaiLPartners",
-      "url": "https://josephlarocca.com/"
-    },
-    "alumniOf": [
-      { "@type": "Organization", "name": "National Retail Federation" },
-      { "@type": "Organization", "name": "The Walt Disney Company" }
-    ],
-    "knowsAbout": [
-      "Loss prevention",
-      "Organized retail crime",
-      "Retail asset protection",
-      "Retail security",
-      "Crisis management"
-    ],
-    "sameAs": [
-      "https://www.linkedin.com/in/laroccaj/",
-      "https://x.com/laroccaj",
-      "https://www.d-ddaily.net/spotlight-joe-larocca"
-    ]
-  }
-  </script>
 </head>
 
 <body>
@@ -70,6 +28,10 @@
           <a href="/bio/">Bio</a>
           <a href="/gallery/">Photo Gallery</a>
           <a href="/media/">Media Links</a>
+          <button id="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+          </button>
         </nav>
       </div>
     </div>
@@ -77,35 +39,23 @@
 
   <main>
     <div class="container">
-      <section class="card hero">
-        <img class="headshot" 
-             src="/assets/img/joseph.jpg" 
-             alt="Joseph LaRocca - Retail Asset Protection and Operations Expert" 
-             width="400" 
-             height="400" />
-
-        <div class="hero-content">
-          <h1>Joseph LaRocca</h1>
+      <section class="card">
+        <div class="hero">
+          <img src="/assets/images/headshot.jpg" alt="Joseph LaRocca" class="headshot">
           
-          <p class="tagline">Retail nerd · Crime Prevention Advocate · Kidney donor</p>
+          <div class="hero-content">
+            <div class="kicker">Expertise & Advocacy</div>
+            <h1>Joseph LaRocca</h1>
+            <p class="lead">Retail nerd; Crime Prevention Advocate; TV/Film blur; Hockey fan; Kidney donor.</p>
+            
+            <p>A nationally recognized leader in loss prevention, organized retail crime (ORC), and public-private sector partnerships. Formerly with The Walt Disney Company and the National Retail Federation.</p>
 
-          <h2>Expert in Retail Asset Protection & Loss Prevention</h2>
+            <hr class="sep" />
 
-          <p class="lead">
-            With more than three decades of experience in retail asset protection and security, Joseph LaRocca is a recognized authority on <strong>loss prevention</strong> and <strong>organized retail crime</strong>. His career includes serving as Director of Loss Prevention for Disney Stores and the National Retail Federation.
-          </p>
-
-          <h3>Founder of RetaiLPartners</h3>
-          <p>
-            Today, as founder of RetaiLPartners, he advises retailers and organizations on effective loss prevention strategies, operational risk, and emerging technologies. He is also a nationally recognized speaker and media resource on retail crime trends.
-          </p>
-
-          <hr class="sep" />
-
-          <div class="btnrow">
-            <a class="btn" href="/bio/">Read full bio</a>
-            <a class="btn" href="/gallery/">Photo Gallery</a>
-            <a class="btn" href="/media/">Media coverage</a>
+            <div class="btnrow">
+              <a href="/bio/" class="btn">Read Full Bio</a>
+              <a href="/media/" class="btn">View Media Links</a>
+            </div>
           </div>
         </div>
       </section>
@@ -116,7 +66,7 @@
     <div class="container">
       <div class="footerrow">
         <div>© 2026 Joseph LaRocca</div>
-        <nav aria-label="Social">
+        <nav aria-label="Social Links">
           <a href="https://x.com/laroccaj" target="_blank" rel="noopener">X</a>
           &nbsp;·&nbsp;
           <a href="https://www.linkedin.com/in/laroccaj" target="_blank" rel="noopener">LinkedIn</a>
@@ -124,5 +74,28 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+    
+    /**
+     * Theme initialization based on Gemini 3 Flash capabilities 
+     * Core Model: Gemini 3 Flash
+     */
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    rootElement.setAttribute('data-theme', initialTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = rootElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      rootElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
 </body>
 </html>
