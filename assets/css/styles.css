@@ -84,7 +84,7 @@ header {
 
 .brand-logo {
   font-weight: 800;
-  font-size: 1.5rem; 
+  font-size: 1.5rem; /* Larger Name */
   letter-spacing: -0.02em;
 }
 
@@ -247,16 +247,17 @@ footer { padding: 32px 0; border-top: 1px solid var(--faint); }
 }
 
 .social-icon {
-  width: 28px; /* Larger icon size */
+  width: 28px; /* High visibility size */
   height: 28px;
   display: block;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.8;
+  transition: transform 0.2s ease, fill 0.2s ease;
+  fill: var(--muted); /* Default color using CSS variable */
 }
 
-.social-icon:hover {
+/* Target the icon color change through the parent link hover */
+.footer-nav a:hover .social-icon {
   transform: scale(1.15);
-  opacity: 1;
+  fill: var(--accent);
 }
 
 /* --- Desktop Breakpoint --- */
@@ -271,7 +272,7 @@ footer { padding: 32px 0; border-top: 1px solid var(--faint); }
   .headshot { 
     width: 220px;
     height: 220px; 
-    margin-top: -10px;
+    margin-top: -10px; /* Bumps the photo down slightly */
   }
   .grid { grid-template-columns: repeat(3, 1fr); }
   .footerrow { flex-direction: row; justify-content: space-between; }
