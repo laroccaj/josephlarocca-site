@@ -246,7 +246,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--faint); text-align: center
   .headshot { 
     width: 220px; /* Slightly smaller for tighter feel */
     height: 220px; 
-    margin-top: -30px; /* Keeps your "unbalanced" top-left placement */
+    margin-top: -10px; /* Keeps your "unbalanced" top-left placement */
   }
   .grid { grid-template-columns: repeat(3, 1fr); }
   .footerrow { flex-direction: row; justify-content: space-between; }
