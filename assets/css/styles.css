@@ -1,15 +1,277 @@
-<footer>
-  <div class="container">
-    <div class="footerrow">
-      <div>© 2026 Joseph LaRocca</div>
-      <nav class="footer-nav" aria-label="Social Links">
-        <a href="https://x.com/laroccaj" target="_blank" rel="noopener" title="Follow on X">
-          <img src="https://cdn.simpleicons.org/x/4b5563" alt="X Logo" class="social-icon">
-        </a>
-        <a href="https://www.linkedin.com/in/laroccaj" target="_blank" rel="noopener" title="Connect on LinkedIn">
-          <img src="https://cdn.simpleicons.org/x/linkedin/4b5563" alt="LinkedIn Logo" class="social-icon">
-        </a>
-      </nav>
-    </div>
-  </div>
-</footer>
+/* assets/css/styles.css */
+
+/* 1. LIGHT MODE (Default) */
+:root {
+  --bg: #ffffff;
+  --panel: #f9fafb;
+  --text: #111827;
+  --muted: #4b5563;
+  --faint: rgba(0, 0, 0, .08);
+  --link: #111827;
+  --linkHover: #2563eb;
+  --accent: #2563eb;
+  --maxw: 980px;
+  --radius: 16px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* 2. DARK MODE (Automatic & Manual) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1012;
+    --panel: #15171b;
+    --text: rgba(255, 255, 255, .92);
+    --muted: rgba(255, 255, 255, .72);
+    --faint: rgba(255, 255, 255, .12);
+    --link: rgba(255, 255, 255, .92);
+    --linkHover: #60a5fa;
+    --accent: #60a5fa;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  }
+}
+
+[data-theme="dark"] {
+    --bg: #0f1012;
+    --panel: #15171b;
+    --text: rgba(255, 255, 255, .92);
+    --muted: rgba(255, 255, 255, .72);
+    --faint: rgba(255, 255, 255, .12);
+    --link: rgba(255, 255, 255, .92);
+    --linkHover: #60a5fa;
+    --accent: #60a5fa;
+}
+
+/* 3. CORE STYLES */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a { color: var(--link); text-decoration: none; transition: 0.2s; }
+a:hover { color: var(--linkHover); }
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Navigation --- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--faint);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 12px;
+}
+
+.brand-logo {
+  font-weight: 800;
+  font-size: 1.5rem; 
+  letter-spacing: -0.02em;
+}
+
+.navlinks {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.navlinks a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.navlinks a:hover, .navlinks a[aria-current="page"] {
+  background: var(--faint);
+  color: var(--text);
+}
+
+#theme-toggle {
+  background: var(--faint);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: 4px;
+}
+
+/* --- Content Cards --- */
+main { padding: 24px 0 40px; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--faint);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.section { margin-top: 32px; }
+
+/* --- Hero --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.headshot {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg);
+  box-shadow: var(--shadow);
+}
+
+/* --- Action Buttons --- */
+.cta-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--faint);
+  color: var(--text);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+  background: var(--accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* --- Typography --- */
+h1 { font-size: 2.25rem; margin: 0 0 12px 0; font-weight: 800; letter-spacing: -0.03em; }
+h2 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 700; }
+.kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+p { margin-bottom: 16px; color: var(--muted); font-size: 15px; }
+.lead { font-size: 18px; color: var(--text); font-weight: 450; margin-bottom: 16px; }
+hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 24px 0; }
+
+/* --- Media List --- */
+.list { display: flex; flex-direction: column; gap: 12px; }
+
+.list a.item {
+  display: block;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--faint);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.list a.item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.item-title { display: block; font-weight: 650; color: var(--text); margin-bottom: 2px; font-size: 1rem; }
+.item .sub { display: block; font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+
+/* --- Photo Gallery Grid --- */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.tile {
+  background: var(--bg);
+  border: 1px solid var(--faint);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.tile img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.tile .caption { font-size: 13px; color: var(--muted); text-align: center; font-weight: 500; }
+
+/* --- Footer --- */
+footer { padding: 32px 0; border-top: 1px solid var(--faint); }
+.footerrow { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+  align-items: center; 
+  color: var(--muted); 
+  font-size: 14px; 
+}
+.footer-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.social-icon {
+  width: 24px; /* Larger icon size */
+  height: 24px;
+  display: block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  /* This filter makes the black SVG icons look like your --muted text color */
+  filter: grayscale(1) opacity(0.7);
+}
+.social-icon:hover {
+  transform: scale(1.1);
+  filter: grayscale(0) opacity(1);
+}
+
+/* --- Desktop Breakpoint --- */
+@media (min-width: 768px) {
+  .nav { flex-direction: row; justify-content: space-between; padding: 12px 0; }
+  .hero { 
+    flex-direction: row; 
+    text-align: left; 
+    align-items: flex-start; 
+    gap: 32px; 
+  }
+  .headshot { 
+    width: 220px;
+    height: 220px; 
+    margin-top: -10px;
+  }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .footerrow { flex-direction: row; justify-content: space-between; }
+  .cta-group { justify-content: flex-start; }
+}
