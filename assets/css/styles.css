@@ -50,7 +50,7 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.5; /* Slightly tighter leading */
   transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -61,7 +61,7 @@ a:hover { color: var(--linkHover); }
   width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px; /* Reduced from 24px */
 }
 
 /* --- Navigation --- */
@@ -78,8 +78,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 0;
-  gap: 16px;
+  padding: 12px 0; /* Tightened from 16px */
+  gap: 12px; /* Tightened from 16px */
 }
 
 .brand-logo {
@@ -90,12 +90,12 @@ header {
 
 .navlinks {
   display: flex;
-  gap: 4px;
+  gap: 2px; /* Tightened from 4px */
   align-items: center;
 }
 
 .navlinks a {
-  padding: 8px 12px;
+  padding: 6px 10px; /* Tightened from 8px 12px */
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
@@ -115,28 +115,28 @@ header {
   border-radius: 50%;
   cursor: pointer;
   line-height: 1;
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 /* --- Content Cards --- */
-main { padding: 40px 0 80px; }
+main { padding: 24px 0 40px; } /* Reduced top padding from 40px to 24px */
 
 .card {
   background: var(--panel);
   border: 1px solid var(--faint);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 24px; /* Tightened from 32px */
   box-shadow: var(--shadow);
 }
 
-.section { margin-top: 48px; }
+.section { margin-top: 32px; } /* Reduced from 48px */
 
 /* --- Hero --- */
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 24px; /* Reduced from 32px */
   text-align: center;
 }
 
@@ -149,23 +149,23 @@ main { padding: 40px 0 80px; }
   box-shadow: var(--shadow);
 }
 
-/* --- Action Buttons (NEW) --- */
+/* --- Action Buttons --- */
 .cta-group {
   display: flex;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 10px; /* Tightened from 12px */
+  margin-top: 20px; /* Tightened from 24px */
   flex-wrap: wrap;
-  justify-content: center; /* Center on mobile */
+  justify-content: center;
 }
 
 .btn-action {
   display: inline-flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 8px 18px; /* Slightly smaller buttons */
   background: var(--faint);
   color: var(--text);
   border-radius: 50px;
-  font-size: 14px;
+  font-size: 13px; /* Slightly smaller text */
   font-weight: 600;
   border: 1px solid transparent;
   transition: all 0.2s ease;
@@ -178,19 +178,19 @@ main { padding: 40px 0 80px; }
 }
 
 /* --- Typography --- */
-h1 { font-size: 2.5rem; margin: 0 0 16px 0; font-weight: 800; letter-spacing: -0.03em; }
-h2 { font-size: 1.5rem; margin: 0 0 16px 0; font-weight: 700; }
-.kicker { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 8px; }
-p { margin-bottom: 20px; color: var(--muted); font-size: 16px; }
-.lead { font-size: 19px; color: var(--text); font-weight: 450; }
-hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 32px 0; }
+h1 { font-size: 2.25rem; margin: 0 0 12px 0; font-weight: 800; letter-spacing: -0.03em; } /* Slightly smaller h1 */
+h2 { font-size: 1.4rem; margin: 0 0 12px 0; font-weight: 700; }
+.kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 6px; }
+p { margin-bottom: 16px; color: var(--muted); font-size: 15px; } /* Reduced margin and font size slightly */
+.lead { font-size: 18px; color: var(--text); font-weight: 450; margin-bottom: 16px; }
+hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 24px 0; } /* Reduced from 32px */
 
 /* --- Media List --- */
-.list { display: flex; flex-direction: column; gap: 16px; }
+.list { display: flex; flex-direction: column; gap: 12px; } /* Tightened from 16px */
 
 .list a.item {
   display: block;
-  padding: 20px;
+  padding: 16px; /* Tightened from 20px */
   border-radius: 12px;
   background: var(--bg);
   border: 1px solid var(--faint);
@@ -202,13 +202,13 @@ hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 32px 0; }
   border-color: var(--accent);
 }
 
-.item-title { display: block; font-weight: 650; color: var(--text); margin-bottom: 4px; font-size: 1.1rem; }
-.item .sub { display: block; font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+.item-title { display: block; font-weight: 650; color: var(--text); margin-bottom: 2px; font-size: 1rem; }
+.item .sub { display: block; font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
 
 /* --- Photo Gallery Grid --- */
 .grid {
   display: grid;
-  gap: 20px;
+  gap: 16px; /* Tightened from 20px */
   grid-template-columns: 1fr;
 }
 
@@ -217,7 +217,7 @@ hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 32px 0; }
   border: 1px solid var(--faint);
   border-radius: 12px;
   overflow: hidden;
-  padding: 12px;
+  padding: 10px; /* Tightened from 12px */
 }
 
 .tile img {
@@ -225,29 +225,30 @@ hr.sep { border: 0; border-top: 1px solid var(--faint); margin: 32px 0; }
   aspect-ratio: 16/10;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 8px; /* Tightened from 12px */
 }
 
-.tile .caption { font-size: 14px; color: var(--muted); text-align: center; font-weight: 500; }
+.tile .caption { font-size: 13px; color: var(--muted); text-align: center; font-weight: 500; }
 
 /* --- Footer --- */
-footer { padding: 60px 0; border-top: 1px solid var(--faint); text-align: center; }
-.footerrow { display: flex; flex-direction: column; gap: 16px; align-items: center; color: var(--muted); font-size: 14px; }
+footer { padding: 40px 0; border-top: 1px solid var(--faint); text-align: center; } /* Reduced from 60px */
+.footerrow { display: flex; flex-direction: column; gap: 12px; align-items: center; color: var(--muted); font-size: 13px; }
 
 /* --- Desktop Breakpoint --- */
 @media (min-width: 768px) {
-  .nav { flex-direction: row; justify-content: space-between; }
+  .nav { flex-direction: row; justify-content: space-between; padding: 12px 0; }
   .hero { 
     flex-direction: row; 
     text-align: left; 
-    align-items: flex-start; /* Changed from center to move photo up */
+    align-items: flex-start; 
+    gap: 32px; 
   }
   .headshot { 
-    width: 240px; 
-    height: 240px; 
-    margin-top: 12px; /* Adjust this value to nudge the photo up or down */
+    width: 220px; /* Slightly smaller for tighter feel */
+    height: 220px; 
+    margin-top: -30px; /* Keeps your "unbalanced" top-left placement */
   }
   .grid { grid-template-columns: repeat(3, 1fr); }
   .footerrow { flex-direction: row; justify-content: space-between; }
-  .cta-group { justify-content: flex-start; } /* Align left on desktop */
+  .cta-group { justify-content: flex-start; }
 }
