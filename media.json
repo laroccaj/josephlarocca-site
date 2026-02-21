@@ -1,6 +1,11 @@
 {
   "news": [
     {
+      "source": "Security System News (2014)",
+      "title": "Fighting ORC Requires New Tech, Partnerships, Experts Say",
+      "url": "https://www.securitysystemsnews.com/article/fighting-orc-requires-new-tech-partnerships-experts-say"
+    },
+    {
       "source": "(Optional - defaults to News Coverage if left blank):** JCK Magazine",
       "title": "NRF applauds bill to authorize retail theft task force (2006)",
       "url": "https://www.jckonline.com/editorial-article/nrf-applauds-bill-to-authorize-retail-theft-task-force/"
