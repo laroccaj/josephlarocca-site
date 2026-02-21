@@ -25,20 +25,22 @@ jobs:
             URL="${{ github.event.inputs.url }}"
             SOURCE="${{ github.event.inputs.source }}"
           else
-            # Smart extract: Finds the line, removes the label (Title:), then strips markdown/spaces
-            TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title" | head -1 | sed 's/.*Title[:]*//I' | sed 's/[*`#]//g' | xargs)
+            # Try to extract from body, but fall back to Issue Title if extraction fails
+            BODY_TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title" | head -1 | sed 's/.*Title[:]*//I' | sed 's/[*`#]//g' | xargs)
+            TITLE="${BODY_TITLE:-${{ github.event.issue.title }}}"
+            
             URL=$(echo '${{ github.event.issue.body }}' | grep -i "URL" | head -1 | sed 's/.*URL[:]*//I' | sed 's/[*`#]//g' | xargs)
+            
             SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | head -1 | sed 's/.*Source[:]*//I' | sed 's/[*`#]//g' | xargs)
+            SOURCE="${SOURCE:-News Coverage}"
           fi
 
-          echo "DEBUG: Title='$TITLE' URL='$URL' Source='$SOURCE'"
-
-          if [ -z "$TITLE" ] || [ -z "$URL" ]; then
-            echo "Error: Extraction failed. Ensure issue contains Title: and URL:"
+          # If we still have no URL, then we really have to stop
+          if [ -z "$URL" ]; then
+            echo "Error: No URL found in the issue body. Please provide a URL: link."
             exit 1
           fi
 
-          # Update the JSON specifically in the .news array
           jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
