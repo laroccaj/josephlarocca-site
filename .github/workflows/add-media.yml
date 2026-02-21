@@ -3,7 +3,6 @@ on:
   issues:
     types: [labeled]
 
-# This ensures only one "robot" updates the file at a time
 concurrency: 
   group: update-media-json
   cancel-in-progress: false
@@ -20,47 +19,42 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetches all history so the push is cleaner
+          fetch-depth: 0 
 
       - name: Extract Data from Issue
         id: extract
         shell: bash
         run: |
-          # Title comes from the Issue Title
           TITLE="${{ github.event.issue.title }}"
-          
-          # URL is found in the body using a regular expression
           URL=$(echo "${{ github.event.issue.body }}" | grep -oE "https?://[a-zA-Z0-9./?=_-]+")
-          
-          # Source is extracted from the body if you type 'Source: Reuters'
           SOURCE=$(echo "${{ github.event.issue.body }}" | grep -i "Source:" | sed 's/[Ss]ource: //g' | xargs || echo "Media")
           
           echo "title=$TITLE" >> $GITHUB_OUTPUT
           echo "url=$URL" >> $GITHUB_OUTPUT
           echo "source=$SOURCE" >> $GITHUB_OUTPUT
 
-      - name: Update media.json
-        run: |
-          # Use jq to prepend the new link to the existing array
-          jq --arg t "${{ steps.extract.outputs.title }}" \
-             --arg u "${{ steps.extract.outputs.url }}" \
-             --arg s "${{ steps.extract.outputs.source }}" \
-             '. = [{"source": $s, "title": $t, "url": $u}] + .' media.json > temp.json && mv temp.json media.json
-
-      - name: Save Changes with Retry
+      - name: Update media.json and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
-          git add media.json
-          git commit -m "Auto-add: ${{ steps.extract.outputs.title }}"
-          
-          # This loop tries to push 5 times in case of simultaneous updates
+
+          # Loop to handle retries if the file changes mid-process
           for i in {1..5}; do
-            git pull --rebase origin main
-            git push origin main && break || sleep 5
+            git pull origin main --rebase
+            
+            # Update the JSON using jq
+            jq --arg t "${{ steps.extract.outputs.title }}" \
+               --arg u "${{ steps.extract.outputs.url }}" \
+               --arg s "${{ steps.extract.outputs.source }}" \
+               '. = [{"source": $s, "title": $t, "url": $u}] + .' media.json > temp.json && mv temp.json media.json
+            
+            git add media.json
+            git commit -m "Auto-add: ${{ steps.extract.outputs.title }}" && \
+            git push origin main && break || (git reset --hard HEAD~1 && sleep 10)
           done
 
       - name: Close Issue
+        if: success()
         run: gh issue close ${{ github.event.issue.number }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
