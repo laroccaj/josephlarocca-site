@@ -11,8 +11,6 @@ on:
 
 jobs:
   update:
-    # Only run on manual OR if the issue isn't labeled 'invalid'
-    if: github.event_name == 'workflow_dispatch' || !contains(github.event.issue.labels.*.name, 'invalid')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,6 +38,7 @@ jobs:
             exit 1
           fi
 
+          # Update the JSON specifically in the .news array
           jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
