@@ -1,60 +1,39 @@
-name: Auto-Add Media Link
-on:
-  issues:
-    types: [labeled]
+name: Add Media Link
 
-concurrency: 
-  group: update-media-json
-  cancel-in-progress: false
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL of the media coverage'
+        required: true
+      title:
+        description: 'Title of the article'
+        required: true
+      source:
+        description: 'Source Name (e.g., NBC News (2024))'
+        required: true
 
 jobs:
-  add-link:
-    if: github.event.label.name == 'approved'
+  update-json:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
 
-      - name: Extract Data from Issue
-        id: extract
-        shell: bash
+      - name: Update media.json
         run: |
-          TITLE="${{ github.event.issue.title }}"
-          URL=$(echo "${{ github.event.issue.body }}" | grep -oE "https?://[a-zA-Z0-9./?=_-]+")
-          SOURCE=$(echo "${{ github.event.issue.body }}" | grep -i "Source:" | sed 's/[Ss]ource: //g' | xargs || echo "Media")
-          
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
-          echo "url=$URL" >> $GITHUB_OUTPUT
-          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          # Use jq to prepend the new item to the "news" array inside the object
+          jq --arg t "${{ github.event.inputs.title }}" \
+             --arg u "${{ github.event.inputs.url }}" \
+             --arg s "${{ github.event.inputs.source }}" \
+             '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
-      - name: Update media.json and Push
+      - name: Commit and push changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "actions@github.com"
-
-          # Loop to handle retries if the file changes mid-process
-          for i in {1..5}; do
-            git pull origin main --rebase
-            
-            # Update the JSON using jq
-            jq --arg t "${{ steps.extract.outputs.title }}" \
-               --arg u "${{ steps.extract.outputs.url }}" \
-               --arg s "${{ steps.extract.outputs.source }}" \
-               '. = [{"source": $s, "title": $t, "url": $u}] + .' media.json > temp.json && mv temp.json media.json
-            
-            git add media.json
-            git commit -m "Auto-add: ${{ steps.extract.outputs.title }}" && \
-            git push origin main && break || (git reset --hard HEAD~1 && sleep 10)
-          done
-
-      - name: Close Issue
-        if: success()
-        run: gh issue close ${{ github.event.issue.number }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add media.json
+          git commit -m "Add new media link: ${{ github.event.inputs.title }}"
+          git push
