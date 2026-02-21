@@ -1,6 +1,11 @@
 {
   "news": [
     {
+      "source": "The New York Times (2005)",
+      "title": "Hot Off the Shelves",
+      "url": "https://www.nytimes.com/2005/11/08/business/hot-off-the-shelves.html"
+    },
+    {
       "source": "The Oaklahoman (2007)",
       "title": "FBI, groups form database to fight shoplifting rings",
       "url": "https://www.oklahoman.com/story/business/2007/04/14/fbi-groups-form-database-to-fight-shoplifting-rings/61791641007/"
