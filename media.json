@@ -1,6 +1,11 @@
 {
   "news": [
     {
+      "source": "(Optional - defaults to News Coverage if left blank):** JCK Magazine",
+      "title": "NRF applauds bill to authorize retail theft task force (2006)",
+      "url": "https://www.jckonline.com/editorial-article/nrf-applauds-bill-to-authorize-retail-theft-task-force/"
+    },
+    {
       "source": "MassLive (2025)",
       "title": "‘Tis the season to ... shoplift? Rising thefts anticipated as holiday shopping gets underway",
       "url": "https://www.masslive.com/news/2011/11/spike_in_shoplifting_expected.html"
