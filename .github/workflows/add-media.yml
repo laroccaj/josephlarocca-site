@@ -13,42 +13,44 @@ on:
         description: 'Source'
         required: true
   issues:
-    types: [closed]
+    types: [opened, edited, closed]
 
 jobs:
   update-json:
-    # Only run if it's a manual trigger OR if the closed issue has the 'approved' label
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'approved')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Extract Data from Issue
-        if: github.event_name == 'issues'
-        id: extract
-        run: |
-          # This pulls the data out of the issue body text
-          echo "title=$(echo '${{ github.event.issue.body }}' | grep -i 'Title:' | sed 's/.*Title: //I')" >> $GITHUB_OUTPUT
-          echo "url=$(echo '${{ github.event.issue.body }}' | grep -i 'URL:' | sed 's/.*URL: //I')" >> $GITHUB_OUTPUT
-          echo "source=$(echo '${{ github.event.issue.body }}' | grep -i 'Source:' | sed 's/.*Source: //I')" >> $GITHUB_OUTPUT
 
       - name: Update media.json
         run: |
-          # Use inputs if manual, or extracted steps if from an issue
-          TITLE="${{ github.event.inputs.title || steps.extract.outputs.title }}"
-          URL="${{ github.event.inputs.url || steps.extract.outputs.url }}"
-          SOURCE="${{ github.event.inputs.source || steps.extract.outputs.source }}"
+          # Use manual inputs OR pull from issue body
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            TITLE="${{ github.event.inputs.title }}"
+            URL="${{ github.event.inputs.url }}"
+            SOURCE="${{ github.event.inputs.source }}"
+          else
+            # Extracts from Issue body (assumes format Title: text, URL: text, Source: text)
+            TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title:" | sed 's/.*Title: //I' | xargs)
+            URL=$(echo '${{ github.event.issue.body }}' | grep -i "URL:" | sed 's/.*URL: //I' | xargs)
+            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source:" | sed 's/.*Source: //I' | xargs)
+          fi
+
+          # Fail if we couldn't find data
+          if [ -z "$TITLE" ] || [ -z "$URL" ]; then
+            echo "Missing data. Title: $TITLE, URL: $URL"
+            exit 1
+          fi
 
           jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Add media link: ${{ github.event.inputs.title || steps.extract.outputs.title }}"
+          git commit -m "Update media.json from ${{ github.event_name }}"
           git push
