@@ -46,8 +46,8 @@
 
         <div class="section">
           <h2>News & Digital Media</h2>
-          <div id="news-list" class="list">
-            <p>Loading the latest updates...</p>
+          <div id="dynamic-news-list" class="list">
+            <p>Loading news items...</p>
           </div>
         </div>
 
@@ -113,7 +113,7 @@
   </footer>
 
   <script>
-    // THEME TOGGLE
+    // THEME TOGGLE (Existing)
     const toggleBtn = document.getElementById('theme-toggle');
     const rootElement = document.documentElement;
     const savedTheme = localStorage.getItem('theme');
@@ -128,12 +128,12 @@
       localStorage.setItem('theme', newTheme);
     });
 
-    // LOAD DYNAMIC LINKS FROM ROOT media.json
+    // FETCH DYNAMIC LINKS FROM media.json
     fetch('/media.json')
       .then(res => res.json())
       .then(data => {
-        const newsList = document.getElementById('news-list');
-        newsList.innerHTML = data.map(item => `
+        const listDiv = document.getElementById('dynamic-news-list');
+        listDiv.innerHTML = data.map(item => `
           <a class="item" href="${item.url}" target="_blank" rel="noopener">
             <span class="sub">${item.source}</span>
             <span class="item-title">${item.title}</span>
@@ -141,8 +141,8 @@
         `).join('');
       })
       .catch(err => {
-        console.error('Error loading media links:', err);
-        document.getElementById('news-list').innerHTML = '<p>Latest updates coming soon.</p>';
+        console.error('Error loading media.json:', err);
+        document.getElementById('dynamic-news-list').innerHTML = '<p>Updates are currently being added. Check back soon.</p>';
       });
   </script>
 </body>
