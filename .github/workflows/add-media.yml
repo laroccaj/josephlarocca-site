@@ -3,6 +3,11 @@ on:
   issues:
     types: [labeled]
 
+# This ensures only one "robot" updates the file at a time
+concurrency: 
+  group: update-media-json
+  cancel-in-progress: false
+
 jobs:
   add-link:
     if: github.event.label.name == 'approved'
@@ -14,6 +19,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history so the push is cleaner
 
       - name: Extract Data from Issue
         id: extract
@@ -34,19 +41,24 @@ jobs:
 
       - name: Update media.json
         run: |
-          # This inserts the new entry at the very top of the list
+          # Use jq to prepend the new link to the existing array
           jq --arg t "${{ steps.extract.outputs.title }}" \
              --arg u "${{ steps.extract.outputs.url }}" \
              --arg s "${{ steps.extract.outputs.source }}" \
              '. = [{"source": $s, "title": $t, "url": $u}] + .' media.json > temp.json && mv temp.json media.json
 
-      - name: Save Changes
+      - name: Save Changes with Retry
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
           git add media.json
           git commit -m "Auto-add: ${{ steps.extract.outputs.title }}"
-          git push
+          
+          # This loop tries to push 5 times in case of simultaneous updates
+          for i in {1..5}; do
+            git pull --rebase origin main
+            git push origin main && break || sleep 5
+          done
 
       - name: Close Issue
         run: gh issue close ${{ github.event.issue.number }}
