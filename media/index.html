@@ -92,3 +92,49 @@
   </footer>
 
   <script>
+    // THEME TOGGLE
+    const toggleBtn = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    rootElement.setAttribute('data-theme', initialTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = rootElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      rootElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // FETCH DYNAMIC LINKS FROM media.json
+    fetch('/media.json')
+      .then(res => {
+        if (!res.ok) throw new Error('File not found');
+        return res.json();
+      })
+      .then(data => {
+        const createListHTML = (items) => {
+          if (!items || items.length === 0) return '<p>No items found.</p>';
+          return items.map(item => `
+            <a class="item" href="${item.url}" target="_blank" rel="noopener">
+              <span class="sub">${item.source}</span>
+              <span class="item-title">${item.title}</span>
+            </a>
+          `).join('');
+        };
+
+        document.getElementById('dynamic-news-list').innerHTML = createListHTML(data.news);
+        document.getElementById('dynamic-leg-list').innerHTML = createListHTML(data.legislative);
+        document.getElementById('dynamic-books-list').innerHTML = createListHTML(data.books);
+      })
+      .catch(err => {
+        console.error('Error loading media.json:', err);
+        const errorMessage = '<p>Unable to load content at this time.</p>';
+        document.getElementById('dynamic-news-list').innerHTML = errorMessage;
+        document.getElementById('dynamic-leg-list').innerHTML = errorMessage;
+        document.getElementById('dynamic-books-list').innerHTML = errorMessage;
+      });
+  </script>
+</body>
+</html>
