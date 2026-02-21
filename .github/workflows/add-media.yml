@@ -1,0 +1,54 @@
+name: Auto-Add Media Link
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  add-link:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Data from Issue
+        id: extract
+        shell: bash
+        run: |
+          # Title comes from the Issue Title
+          TITLE="${{ github.event.issue.title }}"
+          
+          # URL is found in the body using a regular expression
+          URL=$(echo "${{ github.event.issue.body }}" | grep -oE "https?://[a-zA-Z0-9./?=_-]+")
+          
+          # Source is extracted from the body if you type 'Source: Reuters'
+          SOURCE=$(echo "${{ github.event.issue.body }}" | grep -i "Source:" | sed 's/[Ss]ource: //g' | xargs || echo "Media")
+          
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+
+      - name: Update media.json
+        run: |
+          # This inserts the new entry at the very top of the list
+          jq --arg t "${{ steps.extract.outputs.title }}" \
+             --arg u "${{ steps.extract.outputs.url }}" \
+             --arg s "${{ steps.extract.outputs.source }}" \
+             '. = [{"source": $s, "title": $t, "url": $u}] + .' media.json > temp.json && mv temp.json media.json
+
+      - name: Save Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "actions@github.com"
+          git add media.json
+          git commit -m "Auto-add: ${{ steps.extract.outputs.title }}"
+          git push
+
+      - name: Close Issue
+        run: gh issue close ${{ github.event.issue.number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
