@@ -1,76 +1,6 @@
 {
   "news": [
     {
-      "source": "ABC7 Chicago (2012)",
-      "title": "Lawmakers want to limit stores' ID swipe return policy",
-      "url": "https://abc7chicago.com/archive/8567276/"
-    },
-    {
-      "source": "NBC7 San Diego (2009)",
-      "title": "Pro Shoplifting is Risky Big Business",
-      "url": "https://www.nbcsandiego.com/news/local/pro-shoplifting-is-risky-big-business/1877984/"
-    },
-    {
-      "source": "The Standard Times (2009)",
-      "title": "Local retailers cope with shoplifting surge",
-      "url": "https://www.southcoasttoday.com/story/news/2009/03/30/local-retailers-cope-with-shoplifting/52046623007/"
-    },
-    {
-      "source": "The New York Times (2005)",
-      "title": "Hot Off the Shelves",
-      "url": "https://www.nytimes.com/2005/11/08/business/hot-off-the-shelves.html"
-    },
-    {
-      "source": "The Oklahoman (2007)",
-      "title": "FBI, groups form database to fight shoplifting rings",
-      "url": "https://www.oklahoman.com/story/business/2007/04/14/fbi-groups-form-database-to-fight-shoplifting-rings/61791641007/"
-    },
-    {
-      "source": "KSL (2021)",
-      "title": "As holidays near, 'smash-and-grab' robbers hit US retailers",
-      "url": "https://www.ksl.com/article/50290297/as-holidays-near-smash-and-grab-robbers-hit-us-retailers"
-    },
-    {
-      "source": "Florida Times Union (2008)",
-      "title": "Shoplifting on rise in tough times",
-      "url": "https://www.jacksonville.com/story/news/2008/12/09/shoplifting-on-rise-in-tough-times/16003323007/"
-    },
-    {
-      "source": "The New York Times (2006)",
-      "title": "Retail Giant Pardons Smallest-Time Crooks",
-      "url": "https://www.theledger.com/story/news/2006/07/14/retail-giant-pardons-smallest-time-crooks/25844778007/"
-    },
-    {
-      "source": "Los Angeles Times (2011)",
-      "title": "Retailers battle sophisticated shoplifting teams, ‘CSI’ style",
-      "url": "https://www.latimes.com/business/la-xpm-2011-jul-02-la-fi-0702-retail-crime-20110702-story.html"
-    },
-    {
-      "source": "NBC News (2006)",
-      "title": "Retailers cracking down on return fraud",
-      "url": "https://www.nbcnews.com/id/wbna16076208"
-    },
-    {
-      "source": "ABC News (2008)",
-      "title": "Retailers, Police Report Spike in Shoplifting",
-      "url": "https://abcnews.com/Business/Economy/story?id=5199973"
-    },
-    {
-      "source": "The Oregonian (2011)",
-      "title": "FBI: Woodburn man made 0,000 a month shoplifting and selling items on eBay",
-      "url": "https://www.oregonlive.com/pacific-northwest-news/2011/07/fbi_says_woodburn_man_made_10000_a_month_shoplifting_from_retail_stores_in_oregon_and_washington_and.html"
-    },
-    {
-      "source": "Dallas Morning News (2011)",
-      "title": "Retailers go high-tech in fight against shoplifters",
-      "url": "https://www.tuscaloosanews.com/story/news/2011/06/26/retailers-go-high-tech-in-fight-against-shoplifters/28381203007/"
-    },
-    {
-      "source": "Reuters (2007)",
-      "title": "Retail losses hit record 1.6 bln last yr-survey",
-      "url": "https://www.reuters.com/article/us-nrf-fraud-idUSN1126103520070611/"
-    },
-    {
       "source": "MassLive (2025)",
       "title": "‘Tis the season to ... shoplift? Rising thefts anticipated as holiday shopping gets underway",
       "url": "https://www.masslive.com/news/2011/11/spike_in_shoplifting_expected.html"
@@ -151,6 +81,11 @@
       "url": "https://ipvm.com/reports/trends-in-retail-surveillance"
     },
     {
+      "source": "ABC7 Chicago (2012)",
+      "title": "Lawmakers want to limit stores' ID swipe return policy",
+      "url": "https://abc7chicago.com/archive/8567276/"
+    },
+    {
       "source": "Entrepreneur Magazine (2012)",
       "title": "Seven Tech Tools for Fighting Retail Crime",
       "url": "https://www.entrepreneur.com/growing-a-business/seven-tech-tools-for-fighting-retail-crime/223274"
@@ -159,6 +94,21 @@
       "source": "USA Today & ABC News (2012)",
       "title": "Self-checkout lanes boost convenience, theft risk",
       "url": "https://abcnews.com/Business/checkout-lanes-boost-convenience-theft-risk/story?id=16100082"
+    },
+    {
+      "source": "Los Angeles Times (2011)",
+      "title": "Retailers battle sophisticated shoplifting teams, ‘CSI’ style",
+      "url": "https://www.latimes.com/business/la-xpm-2011-jul-02-la-fi-0702-retail-crime-20110702-story.html"
+    },
+    {
+      "source": "The Oregonian (2011)",
+      "title": "FBI: Woodburn man made 0,000 a month shoplifting and selling items on eBay",
+      "url": "https://www.oregonlive.com/pacific-northwest-news/2011/07/fbi_says_woodburn_man_made_10000_a_month_shoplifting_from_retail_stores_in_oregon_and_washington_and.html"
+    },
+    {
+      "source": "Dallas Morning News (2011)",
+      "title": "Retailers go high-tech in fight against shoplifters",
+      "url": "https://www.tuscaloosanews.com/story/news/2011/06/26/retailers-go-high-tech-in-fight-against-shoplifters/28381203007/"
     },
     {
       "source": "Dayton Daily News (2011)",
@@ -201,6 +151,16 @@
       "url": "https://research.ufl.edu/publications/explore/past/fall2010/story_5/index.html"
     },
     {
+      "source": "NBC7 San Diego (2009)",
+      "title": "Pro Shoplifting is Risky Big Business",
+      "url": "https://www.nbcsandiego.com/news/local/pro-shoplifting-is-risky-big-business/1877984/"
+    },
+    {
+      "source": "The Standard Times (2009)",
+      "title": "Local retailers cope with shoplifting surge",
+      "url": "https://www.southcoasttoday.com/story/news/2009/03/30/local-retailers-cope-with-shoplifting/52046623007/"
+    },
+    {
       "source": "Bloomberg / The Royal Gazette (2009)",
       "title": "Retailers extend opening hours to attract more Black Friday shoppers",
       "url": "https://www.royalgazette.com/other/business/article/20110210/retailers-extend-opening-hours-to-attract-more-black-friday-shoppers/"
@@ -209,6 +169,16 @@
       "source": "Fox News (2009)",
       "title": "Year after N.Y. stampede, Black Friday gets makeover",
       "url": "https://www.foxnews.com/story/year-after-n-y-stampede-black-friday-gets-makeover"
+    },
+    {
+      "source": "Florida Times Union (2008)",
+      "title": "Shoplifting on rise in tough times",
+      "url": "https://www.jacksonville.com/story/news/2008/12/09/shoplifting-on-rise-in-tough-times/16003323007/"
+    },
+    {
+      "source": "ABC News (2008)",
+      "title": "Retailers, Police Report Spike in Shoplifting",
+      "url": "https://abcnews.com/Business/Economy/story?id=5199973"
     },
     {
       "source": "ABC News (2008)",
@@ -226,6 +196,16 @@
       "url": "https://www.cnet.com/tech/tech-industry/group-asked-to-apologize-for-calling-online-vendors-addicts/"
     },
     {
+      "source": "The Oklahoman (2007)",
+      "title": "FBI, groups form database to fight shoplifting rings",
+      "url": "https://www.oklahoman.com/story/business/2007/04/14/fbi-groups-form-database-to-fight-shoplifting-rings/61791641007/"
+    },
+    {
+      "source": "Reuters (2007)",
+      "title": "Retail losses hit record 1.6 bln last yr-survey",
+      "url": "https://www.reuters.com/article/us-nrf-fraud-idUSN1126103520070611/"
+    },
+    {
       "source": "NBC News (2007)",
       "title": "Wal-Mart lowers age in shoplifting policy",
       "url": "https://www.nbcnews.com/id/wbna19714916"
@@ -239,6 +219,21 @@
       "source": "Supermarket News (2007)",
       "title": "Card Thieves Target Supermarkets",
       "url": "https://www.supermarketnews.com/grocery-technology/card-thieves-target-supermarkets"
+    },
+    {
+      "source": "The New York Times (2006)",
+      "title": "Retail Giant Pardons Smallest-Time Crooks",
+      "url": "https://www.theledger.com/story/news/2006/07/14/retail-giant-pardons-smallest-time-crooks/25844778007/"
+    },
+    {
+      "source": "NBC News (2006)",
+      "title": "Retailers cracking down on return fraud",
+      "url": "https://www.nbcnews.com/id/wbna16076208"
+    },
+    {
+      "source": "The New York Times (2005)",
+      "title": "Hot Off the Shelves",
+      "url": "https://www.nytimes.com/2005/11/08/business/hot-off-the-shelves.html"
     },
     {
       "source": "Washington Post (2005)",
