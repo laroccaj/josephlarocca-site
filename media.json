@@ -1,16 +1,6 @@
 {
   "news": [
     {
-      "source": "Security System News (2014)",
-      "title": "Fighting ORC Requires New Tech, Partnerships, Experts Say",
-      "url": "https://www.securitysystemsnews.com/article/fighting-orc-requires-new-tech-partnerships-experts-say"
-    },
-    {
-      "source": "(Optional - defaults to News Coverage if left blank):** JCK Magazine",
-      "title": "NRF applauds bill to authorize retail theft task force (2006)",
-      "url": "https://www.jckonline.com/editorial-article/nrf-applauds-bill-to-authorize-retail-theft-task-force/"
-    },
-    {
       "source": "MassLive (2025)",
       "title": "‘Tis the season to ... shoplift? Rising thefts anticipated as holiday shopping gets underway",
       "url": "https://www.masslive.com/news/2011/11/spike_in_shoplifting_expected.html"
@@ -64,6 +54,11 @@
       "source": "USA Today (2014)",
       "title": "Retailers’ holiday hopes up after busy weekend",
       "url": "https://www.usatoday.com/story/money/business/2014/12/21/holiday-shopping-last-weekend-before-christmas/20654223/"
+    },
+    {
+      "source": "Security System News (2014)",
+      "title": "Fighting ORC Requires New Tech, Partnerships, Experts Say",
+      "url": "https://www.securitysystemsnews.com/article/fighting-orc-requires-new-tech-partnerships-experts-say"
     },
     {
       "source": "The Daily Beast (2014)",
