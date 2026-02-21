@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: 'URL of the media coverage'
+        description: 'URL(s) - for multiple, separate with commas'
         required: true
       title:
-        description: 'Title of the article'
+        description: 'Title(s) - for multiple, separate with commas'
         required: true
       source:
-        description: 'Source Name (e.g., NBC News (2024))'
+        description: 'Source(s) - for multiple, separate with commas'
         required: true
 
 jobs:
@@ -24,16 +24,30 @@ jobs:
 
       - name: Update media.json
         run: |
-          # Use jq to prepend the new item to the "news" array inside the object
-          jq --arg t "${{ github.event.inputs.title }}" \
-             --arg u "${{ github.event.inputs.url }}" \
-             --arg s "${{ github.event.inputs.source }}" \
-             '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
+          # Use jq to handle the inputs as an array and prepend them to the 'news' section
+          # This version splits the comma-separated strings into a list
+          jq --arg t_str "${{ github.event.inputs.title }}" \
+             --arg u_str "${{ github.event.inputs.url }}" \
+             --arg s_str "${{ github.event.inputs.source }}" \
+             '
+             # Create an array of new items from the comma-separated strings
+             split($t_str; ",") as $titles |
+             split($u_str; ",") as $urls |
+             split($s_str; ",") as $sources |
+             [range(0; $titles | length)] | 
+             map({
+               source: ($sources[.] | sub("^\\s+"; "") | sub("\\s+$"; "")),
+               title: ($titles[.] | sub("^\\s+"; "") | sub("\\s+$"; "")),
+               url: ($urls[.] | sub("^\\s+"; "") | sub("\\s+$"; ""))
+             }) as $new_items |
+             # Prepend the new items to the existing news array
+             .news = ($new_items + .news)
+             ' media.json > temp.json && mv temp.json media.json
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Add new media link: ${{ github.event.inputs.title }}"
+          git commit -m "Batch add media links: ${{ github.event.inputs.title }}"
           git push
