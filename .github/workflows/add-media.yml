@@ -16,7 +16,7 @@ on:
     types: [opened, edited, closed]
 
 jobs:
-  update-json:
+  update:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -24,33 +24,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Update media.json
+      - name: Extract and Update
         run: |
-          # Use manual inputs OR pull from issue body
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             TITLE="${{ github.event.inputs.title }}"
             URL="${{ github.event.inputs.url }}"
             SOURCE="${{ github.event.inputs.source }}"
           else
-            # Extracts from Issue body (assumes format Title: text, URL: text, Source: text)
-            TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title:" | sed 's/.*Title: //I' | xargs)
-            URL=$(echo '${{ github.event.issue.body }}' | grep -i "URL:" | sed 's/.*URL: //I' | xargs)
-            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source:" | sed 's/.*Source: //I' | xargs)
+            # Improved extraction: looks for the word followed by a colon, ignores case and extra spaces
+            TITLE=$(echo '${{ github.event.issue.body }}' | grep -iE "Title:" | head -1 | sed 's/.*Title:[[:space:]]*//I' | xargs)
+            URL=$(echo '${{ github.event.issue.body }}' | grep -iE "URL:" | head -1 | sed 's/.*URL:[[:space:]]*//I' | xargs)
+            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -iE "Source:" | head -1 | sed 's/.*Source:[[:space:]]*//I' | xargs)
           fi
 
-          # Fail if we couldn't find data
+          # Debugging: This will show up in your Action logs if it fails again
+          echo "Extracted Title: $TITLE"
+          echo "Extracted URL: $URL"
+          echo "Extracted Source: $SOURCE"
+
           if [ -z "$TITLE" ] || [ -z "$URL" ]; then
-            echo "Missing data. Title: $TITLE, URL: $URL"
+            echo "Error: Could not extract Title or URL from issue body."
             exit 1
           fi
 
+          # Update the JSON
           jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
-      - name: Commit and push
+      - name: Push Change
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Update media.json from ${{ github.event_name }}"
+          git commit -m "Add media: $TITLE" || echo "No changes to commit"
           git push
