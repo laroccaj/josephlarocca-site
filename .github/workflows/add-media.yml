@@ -25,19 +25,19 @@ jobs:
             URL="${{ github.event.inputs.url }}"
             SOURCE="${{ github.event.inputs.source }}"
           else
-            # Try to extract from body, but fall back to Issue Title if extraction fails
-            BODY_TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title" | head -1 | sed 's/.*Title[:]*//I' | sed 's/[*`#]//g' | xargs)
-            TITLE="${BODY_TITLE:-${{ github.event.issue.title }}}"
+            # 1. Title: Use the Issue Title by default
+            TITLE="${{ github.event.issue.title }}"
             
-            URL=$(echo '${{ github.event.issue.body }}' | grep -i "URL" | head -1 | sed 's/.*URL[:]*//I' | sed 's/[*`#]//g' | xargs)
+            # 2. URL: Look for anything starting with http in the body
+            URL=$(echo '${{ github.event.issue.body }}' | grep -oE "https?://[a-zA-Z0-9./?=_-]+" | head -1)
             
-            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | head -1 | sed 's/.*Source[:]*//I' | sed 's/[*`#]//g' | xargs)
+            # 3. Source: Look for "Source:" label, or default to "News"
+            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | sed 's/.*Source[:]*//I' | xargs)
             SOURCE="${SOURCE:-News Coverage}"
           fi
 
-          # If we still have no URL, then we really have to stop
           if [ -z "$URL" ]; then
-            echo "Error: No URL found in the issue body. Please provide a URL: link."
+            echo "Error: No URL found in issue body."
             exit 1
           fi
 
@@ -49,5 +49,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Add media link: $TITLE" || echo "No changes"
+          git commit -m "Add media: $TITLE" || echo "No changes"
           git push
