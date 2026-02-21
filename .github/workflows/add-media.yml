@@ -4,17 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: 'URL(s) - for multiple, separate with commas'
+        description: 'URL'
         required: true
       title:
-        description: 'Title(s) - for multiple, separate with commas'
+        description: 'Title'
         required: true
       source:
-        description: 'Source(s) - for multiple, separate with commas'
+        description: 'Source'
         required: true
+  issues:
+    types: [closed]
 
 jobs:
   update-json:
+    # Only run if it's a manual trigger OR if the closed issue has the 'approved' label
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'approved')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,32 +26,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Extract Data from Issue
+        if: github.event_name == 'issues'
+        id: extract
+        run: |
+          # This pulls the data out of the issue body text
+          echo "title=$(echo '${{ github.event.issue.body }}' | grep -i 'Title:' | sed 's/.*Title: //I')" >> $GITHUB_OUTPUT
+          echo "url=$(echo '${{ github.event.issue.body }}' | grep -i 'URL:' | sed 's/.*URL: //I')" >> $GITHUB_OUTPUT
+          echo "source=$(echo '${{ github.event.issue.body }}' | grep -i 'Source:' | sed 's/.*Source: //I')" >> $GITHUB_OUTPUT
+
       - name: Update media.json
         run: |
-          # Use jq to handle the inputs as an array and prepend them to the 'news' section
-          # This version splits the comma-separated strings into a list
-          jq --arg t_str "${{ github.event.inputs.title }}" \
-             --arg u_str "${{ github.event.inputs.url }}" \
-             --arg s_str "${{ github.event.inputs.source }}" \
-             '
-             # Create an array of new items from the comma-separated strings
-             split($t_str; ",") as $titles |
-             split($u_str; ",") as $urls |
-             split($s_str; ",") as $sources |
-             [range(0; $titles | length)] | 
-             map({
-               source: ($sources[.] | sub("^\\s+"; "") | sub("\\s+$"; "")),
-               title: ($titles[.] | sub("^\\s+"; "") | sub("\\s+$"; "")),
-               url: ($urls[.] | sub("^\\s+"; "") | sub("\\s+$"; ""))
-             }) as $new_items |
-             # Prepend the new items to the existing news array
-             .news = ($new_items + .news)
-             ' media.json > temp.json && mv temp.json media.json
+          # Use inputs if manual, or extracted steps if from an issue
+          TITLE="${{ github.event.inputs.title || steps.extract.outputs.title }}"
+          URL="${{ github.event.inputs.url || steps.extract.outputs.url }}"
+          SOURCE="${{ github.event.inputs.source || steps.extract.outputs.source }}"
+
+          jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
+             '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Batch add media links: ${{ github.event.inputs.title }}"
+          git commit -m "Add media link: ${{ github.event.inputs.title || steps.extract.outputs.title }}"
           git push
