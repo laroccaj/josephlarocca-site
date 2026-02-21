@@ -1,16 +1,14 @@
 name: Add Media Link
 
 on:
-  workflow_dispatch:
-    inputs:
-      url: { description: 'URL', required: true }
-      title: { description: 'Title', required: true }
-      source: { description: 'Source', required: true }
   issues:
-    types: [opened, edited, closed]
+    types: [closed]
+  workflow_dispatch: # Keeps the manual "Run Workflow" button just in case
 
 jobs:
   update:
+    # Only runs if you click "Close as completed" (the purple icon)
+    if: github.event.issue.state_reason == 'completed' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,36 +16,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Extract and Update
+      - name: Extract and Sanitize
+        id: vars
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             TITLE="${{ github.event.inputs.title }}"
             URL="${{ github.event.inputs.url }}"
             SOURCE="${{ github.event.inputs.source }}"
           else
-            # 1. Title: Use the Issue Title by default
-            TITLE="${{ github.event.issue.title }}"
-            
-            # 2. URL: Look for anything starting with http in the body
+            # 1. Take the Title from the Issue Subject
+            TITLE=$(echo '${{ github.event.issue.title }}' | tr -d '"'\''|;' | xargs)
+            # 2. Find the first URL in the body
             URL=$(echo '${{ github.event.issue.body }}' | grep -oE "https?://[a-zA-Z0-9./?=_-]+" | head -1)
-            
-            # 3. Source: Look for "Source:" label, or default to "News"
-            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | sed 's/.*Source[:]*//I' | xargs)
+            # 3. Find the source (or default to News Coverage)
+            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | sed 's/.*Source[:]*//I' | tr -d '"'\''|;' | xargs)
             SOURCE="${SOURCE:-News Coverage}"
           fi
 
           if [ -z "$URL" ]; then
-            echo "Error: No URL found in issue body."
+            echo "Error: No URL found in issue. Skipping."
             exit 1
           fi
 
-          jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
+          echo "FINAL_TITLE=$TITLE" >> $GITHUB_ENV
+          echo "FINAL_URL=$URL" >> $GITHUB_ENV
+          echo "FINAL_SOURCE=$SOURCE" >> $GITHUB_ENV
+
+      - name: Update JSON
+        run: |
+          jq --arg t "$FINAL_TITLE" \
+             --arg u "$FINAL_URL" \
+             --arg s "$FINAL_SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
-      - name: Push Change
+      - name: Secure Commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Add media: $TITLE" || echo "No changes"
+          git commit -m "Site Update: $FINAL_TITLE" || echo "No changes"
           git push
