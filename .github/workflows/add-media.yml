@@ -3,20 +3,16 @@ name: Add Media Link
 on:
   workflow_dispatch:
     inputs:
-      url:
-        description: 'URL'
-        required: true
-      title:
-        description: 'Title'
-        required: true
-      source:
-        description: 'Source'
-        required: true
+      url: { description: 'URL', required: true }
+      title: { description: 'Title', required: true }
+      source: { description: 'Source', required: true }
   issues:
     types: [opened, edited, closed]
 
 jobs:
   update:
+    # Only run on manual OR if the issue isn't labeled 'invalid'
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.issue.labels.*.name, 'invalid')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -31,23 +27,19 @@ jobs:
             URL="${{ github.event.inputs.url }}"
             SOURCE="${{ github.event.inputs.source }}"
           else
-            # Improved extraction: looks for the word followed by a colon, ignores case and extra spaces
-            TITLE=$(echo '${{ github.event.issue.body }}' | grep -iE "Title:" | head -1 | sed 's/.*Title:[[:space:]]*//I' | xargs)
-            URL=$(echo '${{ github.event.issue.body }}' | grep -iE "URL:" | head -1 | sed 's/.*URL:[[:space:]]*//I' | xargs)
-            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -iE "Source:" | head -1 | sed 's/.*Source:[[:space:]]*//I' | xargs)
+            # Smart extract: Finds the line, removes the label (Title:), then strips markdown/spaces
+            TITLE=$(echo '${{ github.event.issue.body }}' | grep -i "Title" | head -1 | sed 's/.*Title[:]*//I' | sed 's/[*`#]//g' | xargs)
+            URL=$(echo '${{ github.event.issue.body }}' | grep -i "URL" | head -1 | sed 's/.*URL[:]*//I' | sed 's/[*`#]//g' | xargs)
+            SOURCE=$(echo '${{ github.event.issue.body }}' | grep -i "Source" | head -1 | sed 's/.*Source[:]*//I' | sed 's/[*`#]//g' | xargs)
           fi
 
-          # Debugging: This will show up in your Action logs if it fails again
-          echo "Extracted Title: $TITLE"
-          echo "Extracted URL: $URL"
-          echo "Extracted Source: $SOURCE"
+          echo "DEBUG: Title='$TITLE' URL='$URL' Source='$SOURCE'"
 
           if [ -z "$TITLE" ] || [ -z "$URL" ]; then
-            echo "Error: Could not extract Title or URL from issue body."
+            echo "Error: Extraction failed. Ensure issue contains Title: and URL:"
             exit 1
           fi
 
-          # Update the JSON
           jq --arg t "$TITLE" --arg u "$URL" --arg s "$SOURCE" \
              '.news = [{"source": $s, "title": $t, "url": $u}] + .news' media.json > temp.json && mv temp.json media.json
 
@@ -56,5 +48,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add media.json
-          git commit -m "Add media: $TITLE" || echo "No changes to commit"
+          git commit -m "Add media link: $TITLE" || echo "No changes"
           git push
