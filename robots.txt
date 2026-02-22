@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Allow: /media.json
 
 Sitemap: https://josephlarocca.com/sitemap.xml
