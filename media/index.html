@@ -13,6 +13,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://josephlarocca.com/media/" />
 
+  <link rel="preload" href="/media.json" as="fetch" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 
@@ -47,21 +48,21 @@
         <div class="section">
           <h2>News & Digital Media</h2>
           <div id="dynamic-news-list" class="list">
-            <p>Loading news items...</p>
+            <p>Loading the latest retail crime news coverage and media interviews...</p>
           </div>
         </div>
 
         <div class="section">
           <h2>Legislative & Expert Testimony</h2>
           <div id="dynamic-leg-list" class="list">
-            <p>Loading testimony...</p>
+            <p>Loading legislative contributions and expert testimony records...</p>
           </div>
         </div>
 
         <div class="section">
           <h2>Books & Print Contributions</h2>
           <div id="dynamic-books-list" class="list">
-            <p>Loading contributions...</p>
+            <p>Loading book contributions and print publications...</p>
           </div>
         </div>
 
@@ -107,7 +108,7 @@
       localStorage.setItem('theme', newTheme);
     });
 
-    // FETCH DYNAMIC LINKS FROM media.json
+    // FETCH DYNAMIC LINKS FROM ROOT media.json
     fetch('/media.json')
       .then(res => {
         if (!res.ok) throw new Error('File not found');
@@ -130,7 +131,7 @@
       })
       .catch(err => {
         console.error('Error loading media.json:', err);
-        const errorMessage = '<p>Unable to load content at this time.</p>';
+        const errorMessage = '<p>Unable to load content at this time. Please check back later.</p>';
         document.getElementById('dynamic-news-list').innerHTML = errorMessage;
         document.getElementById('dynamic-leg-list').innerHTML = errorMessage;
         document.getElementById('dynamic-books-list').innerHTML = errorMessage;
