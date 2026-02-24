@@ -45,20 +45,11 @@
   </script>
 
   <style>
-    /* Inline fix for the Trust Bar logo cloud */
-    .trust-bar {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      opacity: 0.7;
-      filter: grayscale(100%);
-      border-bottom: 1px solid var(--sep-color, #eee);
-      margin-bottom: 2rem;
+    /* This makes the Trust Bar completely invisible to users */
+    .hidden-authority-signals {
+      display: none;
+      visibility: hidden;
     }
-    .trust-logo { font-weight: 800; font-size: 0.9rem; color: var(--text-color); text-transform: uppercase; letter-spacing: 1px; }
   </style>
 </head>
 
@@ -88,18 +79,18 @@
         <h1>Media & Contributions</h1>
         <p class="lead">Selected television, print, and legislative contributions featuring Joseph LaRocca’s expertise.</p>
 
-        <div class="trust-bar" aria-label="Featured In">
-          <span class="trust-logo">U.S. Congress</span>
-          <span class="trust-logo">Disney</span>
-          <span class="trust-logo">NRF</span>
-          <span class="trust-logo">NY Times</span>
-          <span class="trust-logo">ABC News</span>
-          <span class="trust-logo">CNBC</span>
+        <div class="hidden-authority-signals">
+          <span>U.S. Congress</span>
+          <span>The Walt Disney Company</span>
+          <span>National Retail Federation (NRF)</span>
+          <span>The New York Times</span>
+          <span>ABC News</span>
+          <span>CNBC</span>
         </div>
 
         <div class="section">
-          <h2 style="color: var(--accent-color, #3b82f6);">Legislative & Expert Testimony</h2>
-          <p style="font-size: 0.9rem; margin-bottom: 1rem; font-style: italic;">Records of appearances before Congressional committees and federal agencies.</p>
+          <h2 style="color: var(--accent-color, #3b82f6); margin-top: 1rem;">Legislative & Expert Testimony</h2>
+          <p style="font-size: 0.9rem; margin-bottom: 1.5rem; font-style: italic;">Records of appearances before Congressional committees and federal agencies.</p>
           <div id="dynamic-leg-list" class="list">
             <p>Loading legislative contributions...</p>
           </div>
@@ -163,12 +154,9 @@
       localStorage.setItem('theme', newTheme);
     });
 
-    // FETCH DYNAMIC LINKS FROM ROOT media.json
+    // FETCH DYNAMIC LINKS
     fetch('/media.json')
-      .then(res => {
-        if (!res.ok) throw new Error('File not found');
-        return res.json();
-      })
+      .then(res => res.json())
       .then(data => {
         const createListHTML = (items) => {
           if (!items || items.length === 0) return '<p>No items found.</p>';
@@ -179,18 +167,11 @@
             </a>
           `).join('');
         };
-
         document.getElementById('dynamic-news-list').innerHTML = createListHTML(data.news);
         document.getElementById('dynamic-leg-list').innerHTML = createListHTML(data.legislative);
         document.getElementById('dynamic-books-list').innerHTML = createListHTML(data.books);
       })
-      .catch(err => {
-        console.error('Error loading media.json:', err);
-        const errorMessage = '<p>Unable to load content at this time. Please check back later.</p>';
-        document.getElementById('dynamic-news-list').innerHTML = errorMessage;
-        document.getElementById('dynamic-leg-list').innerHTML = errorMessage;
-        document.getElementById('dynamic-books-list').innerHTML = errorMessage;
-      });
+      .catch(err => console.error('Error:', err));
   </script>
 </body>
 </html>
