@@ -1,8 +1,8 @@
 [
   {
-    "image": "what-the-hal-nov2021.jpg",
-    "alt": "Fox 11 News In Depth What the Hal",
-    "caption": "Fox 11: What the Hal (Nov 2021)"
+    "image": "fox-news-return-fraud-dec-2019.png",
+    "alt": "Fox News Return Fraud",
+    "caption": "Fox News: Return Fraud (Dec 2019)"
   },
   {
     "image": "fox-news-gift-card-fraud-nov-2019.png",
@@ -10,9 +10,14 @@
     "caption": "Fox News: Gift Card Fraud (Nov 2019)"
   },
   {
-    "image": "fox-news-return-fraud-dec-2019.png",
-    "alt": "Fox News Return Fraud",
-    "caption": "Fox News: Return Fraud (Dec 2019)"
+    "image": "what-the-hal-2019.jpg",
+    "alt": "What the Hal Fox 11",
+    "caption": "Fox 11: What the Hal (2019)"
+  },
+  {
+    "image": "group-what-the-hal-2019.jpg",
+    "alt": "What the Hal Group Photo",
+    "caption": "Fox 11: What the Hal Group (2019)"
   },
   {
     "image": "fox-news-return-fraud-mar-2019.png",
@@ -36,8 +41,8 @@
   },
   {
     "image": "dnd-jan2019.jpg",
-    "alt": "D&D Daily Interview January 2019",
-    "caption": "D&D Daily (Jan 2019)"
+    "alt": "D&D Daily Interview Jan",
+    "caption": "D&D Daily Interview (Jan 2019)"
   },
   {
     "image": "fox11-shoplifting-nov-2018.png",
@@ -46,7 +51,7 @@
   },
   {
     "image": "dnd-2018.jpg",
-    "alt": "D&D Daily Interview 2018",
+    "alt": "D&D Daily 2018",
     "caption": "D&D Daily (2018)"
   },
   {
@@ -110,14 +115,14 @@
     "caption": "Geraldo Rivera at Large (2010)"
   },
   {
-    "image": "bloomberg-interview-may-2009.png",
-    "alt": "Bloomberg Interview",
-    "caption": "Bloomberg Interview (May 2009)"
-  },
-  {
     "image": "fox-news-crowd-control-dec-2009.png",
     "alt": "Fox News Crowd Control",
     "caption": "Fox News: Crowd Control (Dec 2009)"
+  },
+  {
+    "image": "bloomberg-interview-may-2009.png",
+    "alt": "Bloomberg Interview",
+    "caption": "Bloomberg Interview (May 2009)"
   },
   {
     "image": "congressional-testimony-orc-apr-2008.jpg",
