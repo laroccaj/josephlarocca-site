@@ -1,5 +1,10 @@
 [
   {
+    "image": "what-the-hal-nov2021.jpg",
+    "alt": "Fox 11 News In Depth What the Hal",
+    "caption": "Fox 11: What the Hal (Nov 2021)"
+  },
+  {
     "image": "fox-news-gift-card-fraud-nov-2019.png",
     "alt": "Fox News Gift Card Fraud",
     "caption": "Fox News: Gift Card Fraud (Nov 2019)"
@@ -30,9 +35,19 @@
     "caption": "CNBC: E-Fencing (Mar 2019)"
   },
   {
+    "image": "dnd-jan2019.jpg",
+    "alt": "D&D Daily Interview January 2019",
+    "caption": "D&D Daily (Jan 2019)"
+  },
+  {
     "image": "fox11-shoplifting-nov-2018.png",
     "alt": "Fox 11 Shoplifting 2018",
     "caption": "Fox 11: Shoplifting (Nov 2018)"
+  },
+  {
+    "image": "dnd-2018.jpg",
+    "alt": "D&D Daily Interview 2018",
+    "caption": "D&D Daily (2018)"
   },
   {
     "image": "abc7-newsroom-interview-june-2016.jpg",
