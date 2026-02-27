@@ -3,30 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page Not Found | Joseph LaRocca</title>
-  
+  <title>404 | Page Not Found | Joseph LaRocca</title>
+
+  <!-- Prevent indexing, allow link discovery -->
+  <meta name="robots" content="noindex, follow" />
+
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="stylesheet" href="/assets/css/styles.css" />
-  
+
   <style>
-    .error-container {
+    .error-wrap {
       text-align: center;
       padding: 4rem 1rem;
     }
     .error-code {
-      font-size: 5rem;
-      font-weight: bold;
-      color: var(--primary-color, #333);
+      font-size: clamp(3.5rem, 8vw, 5rem);
+      font-weight: 800;
       margin-bottom: 1rem;
+      color: var(--primary-color, #333);
     }
-    .btn-home {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.8rem 1.5rem;
-      background-color: var(--primary-color, #333);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.75rem;
     }
   </style>
 </head>
@@ -48,13 +49,22 @@
 
   <main>
     <div class="container">
-      <section class="card error-container">
+      <section class="card error-wrap">
         <div class="error-code">404</div>
-        <h1>Oops! Page Not Found</h1>
-        <p class="lead">The page you're looking for doesn't exist or has been moved.</p>
-        <p>You may have followed an outdated link or mistyped the address.</p>
-        
-        <a href="/" class="btn-home">Return to Homepage</a>
+        <h1>Page Not Found</h1>
+        <p class="lead">
+          The page you requested does not exist or may have been moved.
+        </p>
+        <p>
+          You can return to the homepage or access one of the sections below.
+        </p>
+
+        <div class="error-actions">
+          <a href="/" class="btn-action">Home</a>
+          <a href="/bio/" class="btn-action">Biography</a>
+          <a href="/media/" class="btn-action">Media Coverage</a>
+          <a href="/gallery/" class="btn-action">Photo Gallery</a>
+        </div>
       </section>
     </div>
   </main>
