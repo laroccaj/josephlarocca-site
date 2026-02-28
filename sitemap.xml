@@ -4,54 +4,176 @@
   
   <url>
     <loc>https://josephlarocca.com/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://josephlarocca.com/bio/</loc>
-    <lastmod>2026-02-22</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://josephlarocca.com/gallery/</loc>
-    <lastmod>2026-02-22</lastmod>
-    <priority>0.8</priority>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/abc7-newsroom-interview-june-2016.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/bloomberg-interview-may-2009.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cbs-return-fraud-dec-2010.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cbs-viaskype-shoplifting-feb-2014.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/chile-symposium-oct-2015.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnbc-business-nation-efencing-mar-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnbc-business-nation-mar-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnbc-orc-june-2011.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnn-counterfeit-goods-dec-2010.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnn-orc-mar-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/cnn-wdc-dec-2010.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/congressional-testimony-orc-apr-2008.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox-news-crowd-control-dec-2009.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox-news-gift-card-fraud-nov-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox-news-return-fraud-dec-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox-news-return-fraud-mar-2019.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox-tampa-your-turn-interview-july-2006.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox5-orc-jan-2015.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox11-shoplifting-dec-2010.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/fox11-shoplifting-nov-2018.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/geraldo-rivera-at-large.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/joseph.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/laaorca-event-industry-analyst-mar-2011.jpg</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/nbc-gift-card-gamble-dec-2005.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/nbc-today-show-shoplifting-dec-2006.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/nbc4-shoplifting-may-2007.png</image:loc></image:image>
-    <image:image><image:loc>https://josephlarocca.com/assets/img/nrf-lpconference-june-2013.jpg</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://josephlarocca.com/media/</loc>
-    <lastmod>2026-02-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-02-27</lastmod>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://josephlarocca.com/gallery/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox-news-return-fraud-dec-2019.png</image:loc>
+      <image:title>Fox News Return Fraud</image:title>
+      <image:caption>Fox News: Return Fraud (Dec 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox-news-gift-card-fraud-nov-2019.png</image:loc>
+      <image:title>Fox News Gift Card Fraud</image:title>
+      <image:caption>Fox News: Gift Card Fraud (Nov 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/what-the-hal-2019.jpg</image:loc>
+      <image:title>What the Hal Fox 11</image:title>
+      <image:caption>Fox 11: What the Hal (2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/group-what-the-hal-2019.jpg</image:loc>
+      <image:title>What the Hal Group Photo</image:title>
+      <image:caption>Fox 11: What the Hal Group (2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox-news-return-fraud-mar-2019.png</image:loc>
+      <image:title>Fox News Return Fraud Mar</image:title>
+      <image:caption>Fox News: Return Fraud (Mar 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnn-orc-mar-2019.png</image:loc>
+      <image:title>CNN ORC</image:title>
+      <image:caption>CNN: ORC Report (Mar 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnbc-business-nation-mar-2019.png</image:loc>
+      <image:title>CNBC Business Nation</image:title>
+      <image:caption>CNBC: Business Nation (Mar 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnbc-business-nation-efencing-mar-2019.png</image:loc>
+      <image:title>CNBC E-Fencing</image:title>
+      <image:caption>CNBC: E-Fencing (Mar 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/dnd-jan2019.jpg</image:loc>
+      <image:title>D&amp;D Daily Interview Jan</image:title>
+      <image:caption>D&amp;D Daily Interview (Jan 2019)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox11-shoplifting-nov-2018.png</image:loc>
+      <image:title>Fox 11 Shoplifting 2018</image:title>
+      <image:caption>Fox 11: Shoplifting (Nov 2018)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/dnd-2018.jpg</image:loc>
+      <image:title>D&amp;D Daily 2018</image:title>
+      <image:caption>D&amp;D Daily (2018)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/abc7-newsroom-interview-june-2016.jpg</image:loc>
+      <image:title>ABC7 Newsroom Interview</image:title>
+      <image:caption>ABC7 Newsroom (June 2016)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/chile-symposium-oct-2015.jpg</image:loc>
+      <image:title>Chile Symposium</image:title>
+      <image:caption>Chile Symposium (Oct 2015)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox5-orc-jan-2015.png</image:loc>
+      <image:title>Fox 5 ORC</image:title>
+      <image:caption>Fox 5: ORC Segment (Jan 2015)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cbs-viaskype-shoplifting-feb-2014.jpg</image:loc>
+      <image:title>CBS via Skype</image:title>
+      <image:caption>CBS: Skype Interview (Feb 2014)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/nrf-lpconference-june-2013.jpg</image:loc>
+      <image:title>NRF LP Conference</image:title>
+      <image:caption>NRF LP Conference (June 2013)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnbc-orc-june-2011.jpg</image:loc>
+      <image:title>CNBC ORC</image:title>
+      <image:caption>CNBC: Organized Retail Crime (June 2011)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/laaorca-event-industry-analyst-mar-2011.jpg</image:loc>
+      <image:title>LAAORCA Event</image:title>
+      <image:caption>LAAORCA Event (Mar 2011)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnn-wdc-dec-2010.jpg</image:loc>
+      <image:title>CNN WDC</image:title>
+      <image:caption>CNN: Walt Disney Co (Dec 2010)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cnn-counterfeit-goods-dec-2010.jpg</image:loc>
+      <image:title>CNN Counterfeit Goods</image:title>
+      <image:caption>CNN: Counterfeit Goods (Dec 2010)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox11-shoplifting-dec-2010.jpg</image:loc>
+      <image:title>Fox 11 Shoplifting 2010</image:title>
+      <image:caption>Fox 11: Shoplifting (Dec 2010)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/cbs-return-fraud-dec-2010.jpg</image:loc>
+      <image:title>CBS Return Fraud</image:title>
+      <image:caption>CBS: Return Fraud (Dec 2010)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/geraldo-rivera-at-large.png</image:loc>
+      <image:title>Geraldo Rivera at Large</image:title>
+      <image:caption>Geraldo Rivera at Large (2010)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox-news-crowd-control-dec-2009.png</image:loc>
+      <image:title>Fox News Crowd Control</image:title>
+      <image:caption>Fox News: Crowd Control (Dec 2009)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/bloomberg-interview-may-2009.png</image:loc>
+      <image:title>Bloomberg Interview</image:title>
+      <image:caption>Bloomberg Interview (May 2009)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/congressional-testimony-orc-apr-2008.jpg</image:loc>
+      <image:title>Congressional Testimony</image:title>
+      <image:caption>Congressional Testimony (Apr 2008)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/nbc4-shoplifting-may-2007.png</image:loc>
+      <image:title>NBC4 Shoplifting</image:title>
+      <image:caption>NBC4: Shoplifting (May 2007)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/nbc-today-show-shoplifting-dec-2006.png</image:loc>
+      <image:title>NBC Today Show</image:title>
+      <image:caption>NBC Today Show (Dec 2006)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/fox-tampa-your-turn-interview-july-2006.png</image:loc>
+      <image:title>Fox Tampa Interview</image:title>
+      <image:caption>Fox Tampa: Your Turn (July 2006)</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://josephlarocca.com/assets/img/nbc-gift-card-gamble-dec-2005.png</image:loc>
+      <image:title>NBC Gift Card Gamble</image:title>
+      <image:caption>NBC: Gift Card Gamble (Dec 2005)</image:caption>
+    </image:image>
   </url>
 
 </urlset>
