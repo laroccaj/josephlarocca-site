@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Allow: /media.json
+Allow: /assets/img/
+Allow: /assets/css/
 
-Sitemap: https://josephlarocca.com/sitemap.xml
+# Corrected Sitemap location with WWW
+Sitemap: https://www.josephlarocca.com/sitemap.xml
